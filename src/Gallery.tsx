@@ -44,16 +44,24 @@ const Gallery = () => {
   }
 
   return (
-    <section className="image-container">
+    <div>
       {!isLoading &&
-        data.results.map((img: { id: string; urls: { regular: string } }) => {
-          return (
-            <a key={img.id} href={img.urls.regular} target="_blank">
-              <img className="img" src={img.urls.regular} alt="none" />
-            </a>
-          );
-        })}
-    </section>
+        (parseInt(data.total) !== 0 ? (
+          <section className="image-container">
+            {data.results.map(
+              (img: { id: string; urls: { regular: string } }) => {
+                return (
+                  <a key={img.id} href={img.urls.regular} target="_blank">
+                    <img className="img" src={img.urls.regular} alt="none" />
+                  </a>
+                );
+              }
+            )}
+          </section>
+        ) : (
+          <h1 className="text-center my-5">no results</h1>
+        ))}
+    </div>
   );
 };
 

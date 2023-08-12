@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useContext, useEffect } from "react";
 import UnsplashContext from "./appContext";
+import Spinner from "react-bootstrap/Spinner";
 
 const url = "https://api.unsplash.com/search/photos?page=1&query=";
 const config: { headers: { Authorization: string } } = {
@@ -11,7 +12,7 @@ const config: { headers: { Authorization: string } } = {
 };
 
 const Gallery = () => {
-  const { searchValue } = useContext(UnsplashContext);
+  const { searchValue, isDark } = useContext(UnsplashContext);
 
   useEffect(() => {
     console.log(searchValue);
@@ -32,9 +33,13 @@ const Gallery = () => {
 
   if (isLoading) {
     return (
-      <>
-        <h1>LOADING</h1>
-      </>
+      <div className="spinner-container w-100 d-flex justify-content-center my-5">
+        <Spinner
+          style={{ color: isDark ? "#f0f0f0" : "#645cff" }}
+          className="spinner"
+          animation="grow"
+        />
+      </div>
     );
   }
 

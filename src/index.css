@@ -14,15 +14,15 @@ html {
 
 :root {
   /* colors */
-  --primary-100: #e2e0ff;
-  --primary-200: #c1beff;
-  --primary-300: #a29dff;
-  --primary-400: #837dff;
-  --primary-500: #645cff;
-  --primary-600: #504acc;
-  --primary-700: #3c3799;
-  --primary-800: #282566;
-  --primary-900: #141233;
+  --primary-100: #e2e0ff !important;
+  --primary-200: #c1beff !important;
+  --primary-300: #a29dff !important;
+  --primary-400: #837dff !important;
+  --primary-500: #645cff !important;
+  --primary-600: #504acc !important;
+  --primary-700: #3c3799 !important;
+  --primary-800: #282566 !important;
+  --primary-900: #141233 !important;
 
   /* grey */
   --grey-50: #f8fafc;
@@ -373,6 +373,17 @@ Gallery
 .image-container .img {
   height: 10rem;
 }
+
+.spinner-container {
+  width: 100px;
+}
+
+.spinner {
+  width: 150px !important;
+  height: 150px !important;
+  color: var(--primary-500);
+}
+
 
 @media (min-width: 768px) {
   .image-container {

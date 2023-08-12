@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
-const url = "https://api.unsplash.com/search/photos?page=1&query=cat";
+const url = /* "https://api.unsplash.com/search/photos?page=1&query=cat" */ "";
 const config: { headers: { Authorization: string } } = {
   headers: {
     Authorization: "Client-ID CrA0NtMilXfHO8gGSt_gVXw1QN9-0Np011M6Stq-F0s",

@@ -1,12 +1,9 @@
 import { BsFillSunFill, BsFillMoonFill } from "react-icons/bs";
-import { useState, useEffect } from "react";
+import { useEffect, useContext } from "react";
+import UnsplashContext from "./appContext";
 
 const ThemeToggle = () => {
-  const [isDark, setIsDark] = useState<boolean>(false);
-
-  const handleToggle = () => {
-    setIsDark((prev) => !prev);
-  };
+  const {isDark, toggleTheme} = useContext(UnsplashContext)
 
   useEffect(() => {
     const body = document.querySelector<HTMLBodyElement>("body")!;
@@ -16,7 +13,7 @@ const ThemeToggle = () => {
   return (
     <section className="toggle-container">
       <div className="toggle-icon">
-        <div onClick={handleToggle} className="dark-toggle">
+        <div onClick={toggleTheme} className="dark-toggle">
           {!isDark ? <BsFillSunFill /> : <BsFillMoonFill />}
         </div>
       </div>

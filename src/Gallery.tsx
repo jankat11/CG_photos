@@ -4,10 +4,10 @@ import { useContext, useEffect } from "react";
 import UnsplashContext from "./appContext";
 import Spinner from "react-bootstrap/Spinner";
 
-const url = "https://api.unsplash.com/search/photos?page=1&query=";
+const url :string = import.meta.env.VITE_BASE_URL;
 const config: { headers: { Authorization: string } } = {
   headers: {
-    Authorization: "Client-ID CrA0NtMilXfHO8gGSt_gVXw1QN9-0Np011M6Stq-F0s",
+    Authorization: import.meta.env.VITE_ACCESS_TOKEN,
   },
 };
 

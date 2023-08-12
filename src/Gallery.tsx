@@ -1,29 +1,45 @@
 import { useQuery } from "@tanstack/react-query";
-import { nanoid } from 'nanoid'
+import axios from "axios";
 
-const data = [
-  "/images/ss-1.png",
-  "/images/ss-2.png",
-  "/images/ss-3.png",
-  "/images/ss-4.png",
-  "/images/ss-5.png",
-  "/images/ss-6.png",
-  "/images/ss-7.png",
-  "/images/ss-8.png",
-  "/images/ss-9.png",
-  "/images/ss-10.png",
-];
+const url = "https://api.unsplash.com/search/photos?page=1&query=cat";
+const config: { headers: { Authorization: string } } = {
+  headers: {
+    Authorization: "Client-ID CrA0NtMilXfHO8gGSt_gVXw1QN9-0Np011M6Stq-F0s",
+  },
+};
 
 const Gallery = () => {
+  const { data, isLoading } = useQuery({
+    queryKey: ["photos"],
+    queryFn: async () => {
+      const { data } = await axios.get(url, config);
+      return data;
+    },
+  });
 
+  console.log(data);
 
+  if (isLoading) {
+    return (
+      <>
+        <h1>LOADING</h1>
+      </>
+    );
+  }
 
   return (
     <section className="image-container">
-      {data.map((img) => {
-        const id = nanoid()
-        return <img className="img" key={id} src={img} alt="none" />;
-      })}
+      {!isLoading &&
+        data.results.map((img: { id: string; urls: { regular: string } }) => {
+          return (
+            <img
+              className="img"
+              key={img.id}
+              src={img.urls.regular}
+              alt="none"
+            />
+          );
+        })}
     </section>
   );
 };

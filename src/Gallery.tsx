@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useContext, useEffect, useCallback } from "react";
 import UnsplashContext from "./appContext";
@@ -16,25 +16,59 @@ const Gallery = () => {
   const { searchValue, isDark, page, nextPage, prevPage } =
     useContext(UnsplashContext);
 
-  const fetchImages = useCallback(async () => {
-    const urlParameters = `page=${page}&query=${
+  const fetchImages = async (pageParam: number) => {
+    const urlParameters = `page=${pageParam}&query=${
       searchValue ? searchValue : "cat"
     }`;
     const { data } = await axios.get(url + urlParameters, config);
-    return data;
-  }, [searchValue, page]);
+    console.log("im fetching");
 
-  const { data, isLoading, isPreviousData } = useQuery({
-    queryKey: ["photos", page, searchValue],
-    queryFn: () => fetchImages(),
-    keepPreviousData: true,
+    return data;
+  };
+
+  const { data, isLoading, fetchNextPage, hasNextPage } = useInfiniteQuery({
+    queryKey: ["photos", searchValue],
+    queryFn: ({ pageParam = 1 }) => fetchImages(pageParam),
+    getNextPageParam: () => page,
   });
 
+  const handleNextPage = () => {
+    nextPage("300");
+    fetchNextPage();
+  };
+
   useEffect(() => {
-    console.log(page);
+    console.log("hell");
   }, [page, searchValue]);
 
-    console.log(data, isPreviousData);
+  console.log("pageıtem is ", data?.pages);
+  console.log("total page is", data?.pages[0].total_pages);
+
+  /*    staleTime: 500000000,
+     keepPreviousData: true,
+     cacheTime: 300000000,
+     enabled: true, */
+
+  /* const loadMore = () => {
+      if (data && data.total_pages > page && !isLoading && !isFetching) {
+        nextPage(data.total_pages);
+      }
+    };
+  
+    useEffect(() => {
+      window.addEventListener("scroll", handleScroll);
+      return () => {
+        window.removeEventListener("scroll", handleScroll);
+      };
+    }, []);
+  
+    const handleScroll = () => {
+      if (
+        window.innerHeight + window.scrollY >= document.body.offsetHeight - 100
+      ) {
+        loadMore();
+      }
+    }; */
 
   if (isLoading) {
     return (
@@ -50,30 +84,31 @@ const Gallery = () => {
 
   return (
     <>
-      <Button disabled={page === 1} onClick={prevPage}>
-        prev
-      </Button>
-      <Button
-        disabled={page === data.total_pages}
-        onClick={nextPage.bind(null, data.total_pages)}
-      >
-        next
-      </Button>
+      <div className="position-absolute" style={{ top: "2rem" }}>
+        <Button
+          disabled={page === data?.pages[0].total_pages}
+          onClick={handleNextPage}
+        >
+          next
+        </Button>
+      </div>
       {!isLoading &&
-        (parseInt(data.total) !== 0 ? (
+        (parseInt(data?.pages[0].total) !== 0 ? (
           <section className="image-container">
-            {data.results.map(
-              (img: {
-                id: string;
-                urls: { full: string; regular: string };
-              }) => {
-                return (
-                  <a key={img.id} href={img.urls.full} target="_blank">
-                    <img className="img" src={img.urls.regular} alt="none" />
-                  </a>
-                );
-              }
-            )}
+            {data?.pages.map((pageItem) => {
+              return pageItem.results.map(
+                (img: {
+                  id: string;
+                  urls: { full: string; regular: string };
+                }) => {
+                  return (
+                    <a key={img.id} href={img.urls.full} target="_blank">
+                      <img className="img" src={img.urls.regular} alt="none" />
+                    </a>
+                  );
+                }
+              );
+            })}
           </section>
         ) : (
           <h1 className="text-center my-5">no results</h1>

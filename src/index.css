@@ -372,6 +372,7 @@ Gallery
 
 .image-container .img {
   height: 20rem;
+  margin-bottom: 3rem;
 }
 
 .spinner-container {

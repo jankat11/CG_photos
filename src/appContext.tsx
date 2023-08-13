@@ -36,7 +36,7 @@ export const UnsplashContextProvider: React.FC<props> = ({ children }) => {
   const [isDark, setIsDark] = useState<boolean>(false);
   const [inputValue, setInputValue] = useState<string>("");
   const [searchValue, setSearchValue] = useState<string>("");
-  const [page, setPage] = useState<number>(1);
+  const [page, setPage] = useState<number>(2);
 
   const toggleTheme = () => setIsDark((prev) => !prev);
   const handleChangeSearchvalue = (e: changeEvent) => {

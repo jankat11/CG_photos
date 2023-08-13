@@ -2,11 +2,12 @@ import { useContext, useRef } from "react";
 import UnsplashContext from "./appContext";
 
 const SearchForm = () => {
-  const { handleSubmit } = useContext(UnsplashContext);
+  const { handleSubmit, resetPage } = useContext(UnsplashContext);
   const inputRef = useRef<HTMLInputElement>(null)
   
   const handleInputRefSubmit = (e : React.FormEvent) => {
     e.preventDefault()
+    resetPage()
     handleSubmit(inputRef.current!.value)
   }
   

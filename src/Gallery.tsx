@@ -1,10 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useCallback } from "react";
 import UnsplashContext from "./appContext";
 import Spinner from "react-bootstrap/Spinner";
+import { Button } from "react-bootstrap";
 
-const url :string = import.meta.env.VITE_BASE_URL;
+const url: string = import.meta.env.VITE_BASE_URL;
 const config: { headers: { Authorization: string } } = {
   headers: {
     Authorization: import.meta.env.VITE_ACCESS_TOKEN,
@@ -12,24 +13,28 @@ const config: { headers: { Authorization: string } } = {
 };
 
 const Gallery = () => {
-  const { searchValue, isDark } = useContext(UnsplashContext);
+  const { searchValue, isDark, page, nextPage, prevPage } =
+    useContext(UnsplashContext);
 
-  useEffect(() => {
-    console.log(searchValue);
-  }, [searchValue]);
+  const fetchImages = useCallback(async () => {
+    const urlParameters = `page=${page}&query=${
+      searchValue ? searchValue : "cat"
+    }`;
+    const { data } = await axios.get(url + urlParameters, config);
+    return data;
+  }, [searchValue, page]);
 
-  const { data, isLoading } = useQuery({
-    queryKey: ["photos", searchValue],
-    queryFn: async () => {
-      const { data } = await axios.get(
-        url + (searchValue ? searchValue : "cat"),
-        config
-      );
-      return data;
-    },
+  const { data, isLoading, isPreviousData } = useQuery({
+    queryKey: ["photos", page, searchValue],
+    queryFn: () => fetchImages(),
+    keepPreviousData: true,
   });
 
-  console.log(data);
+  useEffect(() => {
+    console.log(page);
+  }, [page, searchValue]);
+
+    console.log(data, isPreviousData);
 
   if (isLoading) {
     return (
@@ -44,14 +49,26 @@ const Gallery = () => {
   }
 
   return (
-    <div>
+    <>
+      <Button disabled={page === 1} onClick={prevPage}>
+        prev
+      </Button>
+      <Button
+        disabled={page === data.total_pages}
+        onClick={nextPage.bind(null, data.total_pages)}
+      >
+        next
+      </Button>
       {!isLoading &&
         (parseInt(data.total) !== 0 ? (
           <section className="image-container">
             {data.results.map(
-              (img: { id: string; urls: { regular: string } }) => {
+              (img: {
+                id: string;
+                urls: { full: string; regular: string };
+              }) => {
                 return (
-                  <a key={img.id} href={img.urls.regular} target="_blank">
+                  <a key={img.id} href={img.urls.full} target="_blank">
                     <img className="img" src={img.urls.regular} alt="none" />
                   </a>
                 );
@@ -61,7 +78,7 @@ const Gallery = () => {
         ) : (
           <h1 className="text-center my-5">no results</h1>
         ))}
-    </div>
+    </>
   );
 };
 

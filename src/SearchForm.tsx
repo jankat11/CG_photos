@@ -33,7 +33,7 @@ const SearchForm = () => {
 
   return (
     <section>
-      <p style={{color:  "white"}} onClick={openGallery} className="gallery-title">
+      <p style={{color: !isDark ? "#d946ef" : "white"}} onClick={openGallery} className="gallery-title">
         <span style={{textDecoration: "underline"}}>Gallery</span> <HiPhoto/>
       </p>
       <h1 className="title jankat">Jankat <span className="mx-1">Images</span></h1>

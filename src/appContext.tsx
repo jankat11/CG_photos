@@ -1,21 +1,33 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 const theme = localStorage.getItem("isDark");
 const initialTheme = theme ? (theme === "false" ? false : true) : false;
 if (!theme) localStorage.setItem("isDark", "false");
+const gallery = localStorage.getItem("gallery")
+console.log(gallery);
+let initialGallery : FavoryItem[]; 
+if(gallery) {
+  initialGallery = JSON.parse(gallery)
+} else {
+  initialGallery = []
+}
+
 
 interface FavoryItem {
-  id : string;
+  id: string;
   urlSmall: string;
-  urlLarge: string; 
+  urlLarge: string;
 }
 
 interface UnsplashContextType {
   isDark: boolean;
   searchValue: string;
   favoryImages: FavoryItem[];
+  isMyGalleryOpen: boolean
   addGallery: (item: FavoryItem) => void;
   removeGallery: (id: string) => void;
+  openGallery: () => void;
+  closeGallery: () => void;
   toggleTheme: () => void;
   handleChangeSearchvalue: (value: string) => void;
 }
@@ -24,8 +36,11 @@ const UnsplashContext = createContext<UnsplashContextType>({
   isDark: false,
   searchValue: "",
   favoryImages: [],
+  isMyGalleryOpen: false,
   addGallery: () => {},
   removeGallery: () => {},
+  openGallery: () => {},
+  closeGallery: () => {},
   toggleTheme: () => {},
   handleChangeSearchvalue: () => {},
 });
@@ -37,22 +52,31 @@ interface Props {
 export const UnsplashContextProvider: React.FC<Props> = ({ children }) => {
   const [isDark, setIsDark] = useState<boolean>(initialTheme);
   const [searchValue, setSearchValue] = useState<string>("");
-  const [favoryImages, setFavoryImages] = useState<FavoryItem[]>([])
+  const [isMyGalleryOpen, setIsMyGalleryOpen] = useState<boolean>(false);
+  const [favoryImages, setFavoryImages] = useState<FavoryItem[]>(initialGallery);
   const handleChangeSearchvalue = (value: string) => {
     setSearchValue(value);
   };
 
-  const addGallery = (imgItem : FavoryItem) => {
-    setFavoryImages(prev => [...prev, imgItem])
-  }
-  
-  const removeGallery = (imgId : string) => {
-    setFavoryImages(prev => {
+  const addGallery = (imgItem: FavoryItem) => {
+    setFavoryImages((prev) => [...prev, imgItem]);
+  };
+
+  const removeGallery = (imgId: string) => {
+    setFavoryImages((prev) => {
       return prev.filter((item) => {
-        return item.id !== imgId
-      })
-    })
-  }
+        return item.id !== imgId;
+      });
+    });
+  };
+
+  const openGallery = () => {
+    setIsMyGalleryOpen(true);
+  };
+
+  const closeGallery = () => {
+    setIsMyGalleryOpen(false);
+  };
 
   const toggleTheme = () => {
     const newTheme = !isDark;
@@ -63,13 +87,18 @@ export const UnsplashContextProvider: React.FC<Props> = ({ children }) => {
     isDark,
     searchValue,
     favoryImages,
+    isMyGalleryOpen,
     addGallery,
     removeGallery,
+    openGallery,
+    closeGallery,
     toggleTheme,
     handleChangeSearchvalue,
   };
 
-
+  useEffect(() => {
+    localStorage.setItem("gallery", JSON.stringify(favoryImages))
+  }, [favoryImages])
 
   return (
     <UnsplashContext.Provider value={contextValue}>

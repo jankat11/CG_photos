@@ -18,12 +18,13 @@ const config: { headers: { Authorization: string } } = {
 };
 
 const Gallery = () => {
-  const { searchValue, isDark } = useContext(UnsplashContext);
+  const { searchValue, isMyGalleryOpen, favoryImages } =
+    useContext(UnsplashContext);
 
   const fetchImages = useCallback(
     async (pageParam: number) => {
       const urlParameters = `per_page=18&page=${pageParam}&query=${
-        searchValue ? searchValue : "purple flowers"
+        searchValue ? searchValue : "setup"
       }`;
       const { data } = await axios.get(url + urlParameters, config);
       return data;
@@ -69,6 +70,35 @@ const Gallery = () => {
     );
   }
 
+  if (isMyGalleryOpen) {
+    return (
+      <>
+        {favoryImages.length !== 0 ? (
+          <section className="image-container">
+            {favoryImages.map((item) => {
+              return (
+                <article key={item.id} className="position-relative">
+                  <a href={item.urlLarge} target="_blank">
+                    <img className="img" src={item.urlSmall} alt="none" />
+                  </a>
+                  <Heart
+                    largeImg={item.urlLarge}
+                    smallImg={item.urlSmall}
+                    imgId={item.id}
+                  />
+                </article>
+              );
+            })}
+          </section>
+        ) : (
+          <h4 style={{ color: "#777" }} className="text-center my-5 w-100">
+            no images yet!
+          </h4>
+        )}
+      </>
+    );
+  }
+
   return (
     <>
       {!isLoading &&
@@ -92,9 +122,9 @@ const Gallery = () => {
             })}
           </section>
         ) : (
-          <h2 style={{ color: "#d946ef" }} className="text-center my-5">
+          <h4 style={{ color: "#777" }} className="text-center my-5">
             no result!
-          </h2>
+          </h4>
         ))}
     </>
   );

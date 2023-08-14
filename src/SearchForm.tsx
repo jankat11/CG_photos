@@ -1,29 +1,46 @@
-import { useContext, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import UnsplashContext from "./appContext";
+import { HiPhoto } from 'react-icons/hi2';
 let timeOut: number;
 
+
+
 const SearchForm = () => {
-  const {  handleChangeSearchvalue } = useContext(UnsplashContext);
+  const {
+    handleChangeSearchvalue,
+    openGallery,
+    closeGallery,
+    isMyGalleryOpen,
+    isDark,
+  } = useContext(UnsplashContext);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleChange = () => {
     clearTimeout(timeOut);
     timeOut = setTimeout(() => {
       handleChangeSearchvalue(inputRef.current!.value);
+      closeGallery();
     }, 600);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-  }
+    e.preventDefault();
+  };
+
+  useEffect(() => {
+    if (isMyGalleryOpen) inputRef.current!.value = "";
+  }, [isMyGalleryOpen]);
 
   return (
     <section>
-      <h1 className="title">Jankat's Gallery</h1>
+      <p style={{color: !isDark ? "#d946ef" : "white"}} onClick={openGallery} className="gallery-title">
+        <span style={{textDecoration: "underline"}}>my gallery</span> <HiPhoto/>
+      </p>
+      <h1 className="title">Jankat Images</h1>
       <article>
         <form onSubmit={handleSubmit} className="search-form">
           <input
-            placeholder="purple flowers"
+            placeholder={!isMyGalleryOpen ? "setup" : "your gallery:"}
             type="text"
             ref={inputRef}
             onChange={handleChange}

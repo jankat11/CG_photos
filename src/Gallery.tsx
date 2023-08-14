@@ -21,7 +21,7 @@ const Gallery = () => {
 
   const fetchImages = useCallback(
     async (pageParam: number) => {
-      const urlParameters = `page=${pageParam}&query=${
+      const urlParameters = `per_page=18&page=${pageParam}&query=${
         searchValue ? searchValue : "cat"
       }`;
       const { data } = await axios.get(url + urlParameters, config);

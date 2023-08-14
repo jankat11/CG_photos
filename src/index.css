@@ -373,11 +373,12 @@ Gallery
 .image-container .img {
   height: 20rem;
   margin-bottom: 3rem;
+  transition: all 0.2s ease-in;
 }
 .image-container .img:hover {
   transform: scale(1.01);
-  transition: all 0.2s ease-in-out;
-  box-shadow: 0 5px 15px 5px rgba(0, 0, 0, 0.404);
+  box-shadow: 0 5px 17px 5px rgba(0, 0, 0, 0.158);
+
 }
 
 .spinner-container {

@@ -29,7 +29,6 @@ const SearchForm = () => {
             onChange={handleChange}
             className="form-input search-input"
           />
-
         </form>
       </article>
     </section>

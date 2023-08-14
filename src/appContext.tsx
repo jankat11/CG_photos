@@ -64,7 +64,7 @@ export const UnsplashContextProvider: React.FC<Props> = ({ children }) => {
   };
 
   const addGallery = (imgItem: FavoryItem) => {
-    setFavoryImages((prev) => [...prev, imgItem]);
+    setFavoryImages((prev) => [imgItem, ...prev]);
   };
 
   const removeGallery = (imgId: string) => {

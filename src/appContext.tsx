@@ -1,5 +1,8 @@
 import { createContext, useState, useEffect } from "react";
 
+const theme = localStorage.getItem("isDark");
+const initialTheme = theme ? (theme === "false" ? false : true) : false;
+
 interface props {
   children: React.ReactNode;
 }
@@ -19,7 +22,7 @@ const UnsplashContext = createContext<UnsplashContextType>({
 });
 
 export const UnsplashContextProvider: React.FC<props> = ({ children }) => {
-  const [isDark, setIsDark] = useState<boolean>(false);
+  const [isDark, setIsDark] = useState<boolean>(initialTheme);
   const [searchValue, setSearchValue] = useState<string>("");
   const handleChangeSearchvalue = (value: string) => {
     setSearchValue(value);
@@ -38,7 +41,6 @@ export const UnsplashContextProvider: React.FC<props> = ({ children }) => {
   };
 
   useEffect(() => {
-    const theme = localStorage.getItem("isDark");
     if (!theme) localStorage.setItem("isDark", "false");
     const newTheme = localStorage.getItem("isDark") === "false" ? false : true;
     setIsDark(newTheme);

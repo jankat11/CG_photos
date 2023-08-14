@@ -13,11 +13,15 @@ const SearchForm = () => {
     }, 600);
   };
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+  }
+
   return (
     <section>
       <h1 className="title">Unsplash Images</h1>
       <article>
-        <form className="search-form">
+        <form onSubmit={handleSubmit} className="search-form">
           <input
             placeholder="cat"
             type="text"

@@ -3,6 +3,7 @@ import axios from "axios";
 import { useContext, useEffect, useCallback } from "react";
 import UnsplashContext from "./appContext";
 import Spinner from "react-bootstrap/Spinner";
+import Heart from "./Heart";
 
 interface Img {
   id: string;
@@ -60,7 +61,7 @@ const Gallery = () => {
     return (
       <div className="spinner-container w-100 d-flex justify-content-center my-5">
         <Spinner
-          style={{ color: isDark ? "#f0f0f0" : "#d946ef" }}
+          style={{ color: "#d946ef" }}
           className="spinner"
           animation="grow"
         />
@@ -76,15 +77,24 @@ const Gallery = () => {
             {data?.pages.map((pageItem) => {
               return pageItem.results.map((img: Img) => {
                 return (
-                  <a key={img.id} href={img.urls.full} target="_blank">
-                    <img className="img" src={img.urls.regular} alt="none" />
-                  </a>
+                  <article key={img.id} className="position-relative">
+                    <a href={img.urls.full} target="_blank">
+                      <img className="img" src={img.urls.regular} alt="none" />
+                    </a>
+                    <Heart
+                      largeImg={img.urls.full}
+                      smallImg={img.urls.regular}
+                      imgId={img.id}
+                    />
+                  </article>
                 );
               });
             })}
           </section>
         ) : (
-          <h2 style={{color: "#d946ef"}} className="text-center my-5">no result!</h2>
+          <h2 style={{ color: "#d946ef" }} className="text-center my-5">
+            no result!
+          </h2>
         ))}
     </>
   );

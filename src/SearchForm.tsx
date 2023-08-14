@@ -1,17 +1,14 @@
 import { useContext, useEffect, useRef } from "react";
 import UnsplashContext from "./appContext";
-import { HiPhoto } from 'react-icons/hi2';
 let timeOut: number;
-
-
 
 const SearchForm = () => {
   const {
     handleChangeSearchvalue,
-    openGallery,
     closeGallery,
     isMyGalleryOpen,
     isDark,
+    searchValue,
   } = useContext(UnsplashContext);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -28,15 +25,18 @@ const SearchForm = () => {
   };
 
   useEffect(() => {
-    if (isMyGalleryOpen) inputRef.current!.value = "";
+    if (isMyGalleryOpen) {
+      inputRef.current!.value = "";
+    } else {
+      inputRef.current!.value = searchValue;
+    }
   }, [isMyGalleryOpen]);
 
   return (
     <section>
-      <p style={{color: !isDark ? "#d946ef" : "white"}} onClick={openGallery} className="gallery-title">
-        <span style={{textDecoration: "underline"}}>Gallery</span> <HiPhoto/>
-      </p>
-      <h1 className="title jankat">Jankat <span className="mx-1">Images</span></h1>
+      <h1 style={{color: isDark ? "white" : "#d946ef"}} className="title jankat">
+        Jankat <span className="mx-1">Images</span>
+      </h1>
       <article>
         <form onSubmit={handleSubmit} className="search-form">
           <input

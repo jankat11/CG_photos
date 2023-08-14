@@ -1,17 +1,15 @@
-import Gallery from "./Gallery"
-import SearchForm from "./SearchForm"
-import ThemeToggle from "./ThemeToggle"
-import 'bootstrap/dist/css/bootstrap.min.css';
+import Gallery from "./Gallery";
+import SearchForm from "./SearchForm";
+import ThemeToggle from "./Header";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const App = () => {
   return (
     <>
-      <header>
-        <ThemeToggle />
-        <SearchForm />
-      </header>
+      <ThemeToggle />
+      <SearchForm />
       <Gallery />
     </>
-  )
-}
-export default App
+  );
+};
+export default App;

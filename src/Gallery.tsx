@@ -91,7 +91,7 @@ const Gallery = () => {
             })}
           </section>
         ) : (
-          <h4 style={{ color: "#777" }} className="text-center my-5 w-100">
+          <h4 style={{ color: "#aaa" }} className="text-center my-5 w-100">
             no images yet!
           </h4>
         )}
@@ -122,7 +122,7 @@ const Gallery = () => {
             })}
           </section>
         ) : (
-          <h4 style={{ color: "#777" }} className="text-center my-5">
+          <h4 style={{ color: "#aaa" }} className="text-center my-5">
             no result!
           </h4>
         ))}

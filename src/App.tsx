@@ -4,11 +4,12 @@ import ThemeToggle from "./ThemeToggle"
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
-
   return (
     <>
-      <ThemeToggle />
-      <SearchForm />
+      <header>
+        <ThemeToggle />
+        <SearchForm />
+      </header>
       <Gallery />
     </>
   )

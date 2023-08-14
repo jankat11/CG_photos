@@ -40,7 +40,7 @@ export const UnsplashContextProvider: React.FC<props> = ({ children }) => {
   useEffect(() => {
     const theme = localStorage.getItem("isDark");
     if (!theme) localStorage.setItem("isDark", "false");
-    const newTheme = theme === "false" ? false : true;
+    const newTheme = localStorage.getItem("isDark") === "false" ? false : true;
     setIsDark(newTheme);
   }, []);
 

@@ -1,28 +1,31 @@
 import { useContext, useRef } from "react";
 import UnsplashContext from "./appContext";
+let timeOut: number;
 
 const SearchForm = () => {
-  const { handleSubmit} = useContext(UnsplashContext);
-  const inputRef = useRef<HTMLInputElement>(null)
-  
-  const handleInputRefSubmit = (e : React.FormEvent) => {
-    e.preventDefault()
-   
-    handleSubmit(inputRef.current!.value)
-  }
-  
+  const {  handleChangeSearchvalue } = useContext(UnsplashContext);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const handleChange = () => {
+    clearTimeout(timeOut);
+    timeOut = setTimeout(() => {
+      handleChangeSearchvalue(inputRef.current!.value);
+    }, 600);
+  };
+
   return (
     <section>
       <h1 className="title">Unsplash Images</h1>
       <article>
-        <form onSubmit={handleInputRefSubmit} className="search-form">
+        <form className="search-form">
           <input
             placeholder="cat"
             type="text"
             ref={inputRef}
+            onChange={handleChange}
             className="form-input search-input"
           />
-          <button className="btn">Search</button>
+
         </form>
       </article>
     </section>

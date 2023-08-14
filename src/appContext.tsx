@@ -55,7 +55,7 @@ export const UnsplashContextProvider: React.FC<props> = ({ children }) => {
   };
 
   const resetPage = () => {
-    setPage(1);
+    setPage(2);
   };
 
   const contextValue: UnsplashContextType = {

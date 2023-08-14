@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 interface props {
   children: React.ReactNode;
@@ -21,17 +21,28 @@ const UnsplashContext = createContext<UnsplashContextType>({
 export const UnsplashContextProvider: React.FC<props> = ({ children }) => {
   const [isDark, setIsDark] = useState<boolean>(false);
   const [searchValue, setSearchValue] = useState<string>("");
-  const toggleTheme = () => setIsDark((prev) => !prev);
   const handleChangeSearchvalue = (value: string) => {
     setSearchValue(value);
   };
 
+  const toggleTheme = () => {
+    const newTheme = !isDark;
+    localStorage.setItem("isDark", newTheme.toString());
+    setIsDark((prev) => !prev);
+  };
   const contextValue: UnsplashContextType = {
     isDark,
     searchValue,
     toggleTheme,
     handleChangeSearchvalue,
   };
+
+  useEffect(() => {
+    const theme = localStorage.getItem("isDark");
+    if (!theme) localStorage.setItem("isDark", "false");
+    const newTheme = theme === "false" ? false : true;
+    setIsDark(newTheme);
+  }, []);
 
   return (
     <UnsplashContext.Provider value={contextValue}>

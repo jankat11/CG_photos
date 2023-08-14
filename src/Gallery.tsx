@@ -18,8 +18,13 @@ const config: { headers: { Authorization: string } } = {
 };
 
 const Gallery = () => {
-  const { searchValue, isMyGalleryOpen, favoryImages } =
-    useContext(UnsplashContext);
+  const {
+    searchValue,
+    isMyGalleryOpen,
+    favoryImages,
+    galleryPage,
+    nextGalleryPage,
+  } = useContext(UnsplashContext);
 
   const fetchImages = useCallback(
     async (pageParam: number) => {
@@ -45,9 +50,17 @@ const Gallery = () => {
   const handleScroll = () => {
     if (
       window.innerHeight + window.scrollY >=
-      document.body.offsetHeight - 300
+      document.body.offsetHeight - 400
     ) {
-      fetchNextPage();
+      
+      if (!isMyGalleryOpen) {
+        fetchNextPage();
+      } else {
+        console.log(favoryImages.length, galleryPage);
+        
+        if (favoryImages.length > galleryPage)
+        nextGalleryPage()
+      }
     }
   };
 
@@ -56,7 +69,7 @@ const Gallery = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [isMyGalleryOpen, galleryPage]);
 
   if (isLoading) {
     return (
@@ -75,7 +88,7 @@ const Gallery = () => {
       <>
         {favoryImages.length !== 0 ? (
           <section className="image-container">
-            {favoryImages.map((item) => {
+            {favoryImages.slice(0, galleryPage).map((item) => {              
               return (
                 <article key={item.id} className="position-relative">
                   <a href={item.urlLarge} target="_blank">

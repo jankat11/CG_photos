@@ -1,17 +1,16 @@
 import { createContext, useState, useEffect } from "react";
 
+const favoryImagePerPage = 12
 const theme = localStorage.getItem("isDark");
 const initialTheme = theme ? (theme === "false" ? false : true) : false;
 if (!theme) localStorage.setItem("isDark", "false");
-const gallery = localStorage.getItem("gallery")
-console.log(gallery);
-let initialGallery : FavoryItem[]; 
-if(gallery) {
-  initialGallery = JSON.parse(gallery)
+const gallery = localStorage.getItem("gallery");
+let initialGallery: FavoryItem[];
+if (gallery) {
+  initialGallery = JSON.parse(gallery);
 } else {
-  initialGallery = []
+  initialGallery = [];
 }
-
 
 interface FavoryItem {
   id: string;
@@ -23,7 +22,9 @@ interface UnsplashContextType {
   isDark: boolean;
   searchValue: string;
   favoryImages: FavoryItem[];
-  isMyGalleryOpen: boolean
+  isMyGalleryOpen: boolean;
+  galleryPage: number;
+  nextGalleryPage: () => void;
   addGallery: (item: FavoryItem) => void;
   removeGallery: (id: string) => void;
   openGallery: () => void;
@@ -37,6 +38,8 @@ const UnsplashContext = createContext<UnsplashContextType>({
   searchValue: "",
   favoryImages: [],
   isMyGalleryOpen: false,
+  galleryPage: 0,
+  nextGalleryPage: () => {},
   addGallery: () => {},
   removeGallery: () => {},
   openGallery: () => {},
@@ -53,7 +56,9 @@ export const UnsplashContextProvider: React.FC<Props> = ({ children }) => {
   const [isDark, setIsDark] = useState<boolean>(initialTheme);
   const [searchValue, setSearchValue] = useState<string>("");
   const [isMyGalleryOpen, setIsMyGalleryOpen] = useState<boolean>(false);
-  const [favoryImages, setFavoryImages] = useState<FavoryItem[]>(initialGallery);
+  const [galleryPage, setGalleryPage] = useState<number>(favoryImagePerPage);
+  const [favoryImages, setFavoryImages] =
+    useState<FavoryItem[]>(initialGallery);
   const handleChangeSearchvalue = (value: string) => {
     setSearchValue(value);
   };
@@ -76,6 +81,16 @@ export const UnsplashContextProvider: React.FC<Props> = ({ children }) => {
 
   const closeGallery = () => {
     setIsMyGalleryOpen(false);
+    setGalleryPage(favoryImagePerPage);
+  };
+
+  const nextGalleryPage = () => {
+    console.log("gallery page is: ",galleryPage);
+    
+    setGalleryPage((prev) => {
+      if (favoryImages.length > prev) return prev + favoryImagePerPage
+      return prev
+    });
   };
 
   const toggleTheme = () => {
@@ -88,6 +103,8 @@ export const UnsplashContextProvider: React.FC<Props> = ({ children }) => {
     searchValue,
     favoryImages,
     isMyGalleryOpen,
+    galleryPage,
+    nextGalleryPage,
     addGallery,
     removeGallery,
     openGallery,
@@ -97,8 +114,8 @@ export const UnsplashContextProvider: React.FC<Props> = ({ children }) => {
   };
 
   useEffect(() => {
-    localStorage.setItem("gallery", JSON.stringify(favoryImages))
-  }, [favoryImages])
+    localStorage.setItem("gallery", JSON.stringify(favoryImages));
+  }, [favoryImages]);
 
   return (
     <UnsplashContext.Provider value={contextValue}>

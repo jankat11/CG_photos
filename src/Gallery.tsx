@@ -22,7 +22,7 @@ const Gallery = () => {
   const fetchImages = useCallback(
     async (pageParam: number) => {
       const urlParameters = `per_page=18&page=${pageParam}&query=${
-        searchValue ? searchValue : "cat"
+        searchValue ? searchValue : "purple flowers"
       }`;
       const { data } = await axios.get(url + urlParameters, config);
       return data;
@@ -60,7 +60,7 @@ const Gallery = () => {
     return (
       <div className="spinner-container w-100 d-flex justify-content-center my-5">
         <Spinner
-          style={{ color: isDark ? "#f0f0f0" : "#645cff" }}
+          style={{ color: isDark ? "#f0f0f0" : "#d946ef" }}
           className="spinner"
           animation="grow"
         />
@@ -84,7 +84,7 @@ const Gallery = () => {
             })}
           </section>
         ) : (
-          <h1 className="text-center my-5">no results</h1>
+          <h2 style={{color: "#d946ef"}} className="text-center my-5">no result!</h2>
         ))}
     </>
   );

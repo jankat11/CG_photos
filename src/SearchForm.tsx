@@ -19,11 +19,11 @@ const SearchForm = () => {
 
   return (
     <section>
-      <h1 className="title">Unsplash Images</h1>
+      <h1 className="title">Jankat's Gallery</h1>
       <article>
         <form onSubmit={handleSubmit} className="search-form">
           <input
-            placeholder="cat"
+            placeholder="purple flowers"
             type="text"
             ref={inputRef}
             onChange={handleChange}

@@ -52,7 +52,7 @@ const Header = () => {
               </span>
             ) : (
               <span>
-                <GoHomeFill className="mb-1" /> home
+                <GoHomeFill className="home-icon" /> home
               </span>
             )}
           </span>

@@ -427,6 +427,13 @@ Gallery
 .gallery-title {
   cursor: pointer;
   padding: 0.5rem 0;
+  position: relative;
+  left: 1.6rem !important;
+}
+
+.home-icon {
+  position: relative;
+  bottom: 2px;
 }
 
 .jankat {

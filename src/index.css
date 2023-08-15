@@ -64,7 +64,7 @@ html {
   --dark-mode-bg-color: #0f0110;
   --dark-mode-text-color: #f0f0f0;
   --backgroundColor: var(--grey-50);
-  --textColor: var(--grey-900);
+  --textColor: #4a044e;
 
   --darkModeTransition: color 0.3s ease-in-out;
 }
@@ -341,7 +341,7 @@ Search Form
 .search-input:focus {
   outline: none !important;
   box-shadow: 0 0 5px 1px #4a044e18;
-  border: solid 1px #4a044e63;
+  border: solid 1px #4a044eaf;
 }
 .dark-theme .search-input:focus {
   outline: none !important;
@@ -349,8 +349,15 @@ Search Form
   border: solid 1px #e466f0;
 }
 
-.search-input {
+.dark-theme .search-input {
   border-color: var(--grey-300);
+  color: var(--textColor);
+  border-radius: 0;
+
+  /* border-right: none; */
+}
+.search-input {
+  border-color: #4a044e63;
   color: var(--textColor);
   border-radius: 0;
 

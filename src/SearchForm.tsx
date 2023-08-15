@@ -1,5 +1,6 @@
 import { useContext, useEffect, useRef } from "react";
 import UnsplashContext from "./appContext";
+
 let timeOut: number;
 
 const SearchForm = () => {
@@ -34,9 +35,6 @@ const SearchForm = () => {
 
   return (
     <section>
-      <h1 style={{color: isDark ? "white" : "#4a044e"}} className="title jankat">
-        Jankat <span className="mx-1">Images</span>
-      </h1>
       <article>
         <form onSubmit={handleSubmit} className="search-form">
           <input

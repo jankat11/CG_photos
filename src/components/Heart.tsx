@@ -1,6 +1,6 @@
 import { BsFillHeartFill } from "react-icons/bs";
 import { useState, useContext, useEffect } from "react";
-import UnsplashContext from "./appContext";
+import UnsplashContext from "../appContext";
 
 interface Props {
   imgId: string;
@@ -12,7 +12,8 @@ const pink = "#ec4899";
 const white = "white";
 
 const Heart: React.FC<Props> = ({ imgId, largeImg, smallImg }) => {
-  const { addGallery, removeGallery, favoryImages } = useContext(UnsplashContext);
+  const { addGallery, removeGallery, favoryImages } =
+    useContext(UnsplashContext);
   const [color, setColor] = useState<string>(white);
 
   const handleColorChange = () => {
@@ -22,7 +23,6 @@ const Heart: React.FC<Props> = ({ imgId, largeImg, smallImg }) => {
       removeGallery(imgId);
     }
     setColor((prev) => (prev === pink ? white : pink));
-    
   };
 
   useEffect(() => {

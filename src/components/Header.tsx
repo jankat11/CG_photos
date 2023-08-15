@@ -3,9 +3,9 @@ import { MdNightlightRound } from "react-icons/md";
 import { IoIosPhotos } from "react-icons/io";
 import { GoHomeFill } from "react-icons/go";
 import { useEffect, useContext } from "react";
-import UnsplashContext from "./appContext";
+import UnsplashContext from "../appContext";
 import { Image } from "react-bootstrap";
-import photo1 from "./assets/photo1.svg";
+import photo1 from "../assets/photo1.svg";
 
 const Header = () => {
   const { isDark, isMyGalleryOpen, toggleTheme, openGallery, closeGallery } =

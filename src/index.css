@@ -411,6 +411,12 @@ Gallery
   color: var(--primary-500);
 }
 
+.spinner-bottom {
+  position: relative;
+  bottom: 5rem;
+  height: 50px;
+}
+
 .heart-wrapper {
   bottom: 3rem;
   right: 0;

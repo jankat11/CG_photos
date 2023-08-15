@@ -1,8 +1,8 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useContext, useEffect, useCallback } from "react";
-import UnsplashContext from "./appContext";
-import Spinner from "react-bootstrap/Spinner";
+import UnsplashContext from "../appContext";
+import Spinner from "./Spinner";
 import Heart from "./Heart";
 
 interface Img {
@@ -38,15 +38,16 @@ const Gallery = () => {
     [searchValue]
   );
 
-  const { data, isLoading, fetchNextPage } = useInfiniteQuery({
-    queryKey: ["photos", searchValue],
-    queryFn: ({ pageParam = 1 }) => fetchImages(pageParam),
-    getNextPageParam: (lastPage, allPages) => {
-      if (lastPage.total_pages > allPages.length) {
-        return allPages.length + 1;
-      }
-    },
-  });
+  const { data, isLoading, fetchNextPage, isFetchingNextPage } =
+    useInfiniteQuery({
+      queryKey: ["photos", searchValue],
+      queryFn: ({ pageParam = 1 }) => fetchImages(pageParam),
+      getNextPageParam: (lastPage, allPages) => {
+        if (lastPage.total_pages > allPages.length) {
+          return allPages.length + 1;
+        }
+      },
+    });
 
   const handleScroll = () => {
     if (
@@ -71,15 +72,7 @@ const Gallery = () => {
   }, [isMyGalleryOpen, galleryPage]);
 
   if (isLoading) {
-    return (
-      <div className="spinner-container w-100 d-flex justify-content-center my-5">
-        <Spinner
-          style={{ color: isDark ? "#e2e8f0" : "#4a044e" }}
-          className="spinner"
-          animation="grow"
-        />
-      </div>
-    );
+    return <Spinner />;
   }
 
   if (isMyGalleryOpen) {
@@ -144,6 +137,7 @@ const Gallery = () => {
             no result!
           </h4>
         ))}
+      {isFetchingNextPage && <Spinner bottomSpiner={true} />}
     </>
   );
 };

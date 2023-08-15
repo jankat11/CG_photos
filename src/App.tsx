@@ -1,6 +1,6 @@
-import Gallery from "./Gallery";
-import SearchForm from "./SearchForm";
-import ThemeToggle from "./Header";
+import Gallery from "./components/Gallery";
+import SearchForm from "./components/SearchForm";
+import ThemeToggle from "./components/Header";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const App = () => {

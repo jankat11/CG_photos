@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef } from "react";
-import UnsplashContext from "./appContext";
+import UnsplashContext from "../appContext";
 
 let timeOut: number;
 
@@ -8,7 +8,6 @@ const SearchForm = () => {
     handleChangeSearchvalue,
     closeGallery,
     isMyGalleryOpen,
-    isDark,
     searchValue,
   } = useContext(UnsplashContext);
   const inputRef = useRef<HTMLInputElement>(null);

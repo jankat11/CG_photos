@@ -23,6 +23,7 @@ const Gallery = () => {
     isMyGalleryOpen,
     favoryImages,
     galleryPage,
+    isDark,
     nextGalleryPage,
   } = useContext(UnsplashContext);
 
@@ -52,14 +53,12 @@ const Gallery = () => {
       window.innerHeight + window.scrollY >=
       document.body.offsetHeight - 400
     ) {
-      
       if (!isMyGalleryOpen) {
         fetchNextPage();
       } else {
         console.log(favoryImages.length, galleryPage);
-        
-        if (favoryImages.length > galleryPage)
-        nextGalleryPage()
+
+        if (favoryImages.length > galleryPage) nextGalleryPage();
       }
     }
   };
@@ -88,7 +87,7 @@ const Gallery = () => {
       <>
         {favoryImages.length !== 0 ? (
           <section className="image-container">
-            {favoryImages.slice(0, galleryPage).map((item) => {              
+            {favoryImages.slice(0, galleryPage).map((item) => {
               return (
                 <article key={item.id} className="position-relative">
                   <a href={item.urlLarge} target="_blank">
@@ -104,7 +103,10 @@ const Gallery = () => {
             })}
           </section>
         ) : (
-          <h4 style={{ color: "#aaa" }} className="text-center my-5 w-100">
+          <h4
+            style={{ color: isDark ? "#e2e8f0" : "#4a044e" }}
+            className="text-center my-5 w-100"
+          >
             no images yet!
           </h4>
         )}
@@ -135,7 +137,10 @@ const Gallery = () => {
             })}
           </section>
         ) : (
-          <h4 style={{ color: "#aaa" }} className="text-center my-5">
+          <h4
+            style={{ color: isDark ? "#e2e8f0" : "#4a044e" }}
+            className="text-center my-5"
+          >
             no result!
           </h4>
         ))}

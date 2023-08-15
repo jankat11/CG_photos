@@ -22,7 +22,7 @@ const Header = () => {
   return (
     <section className="toggle-container">
       <p
-        style={{ color: !isDark ? "#d946ef" : "white" }}
+        style={{ color: !isDark ? "#4a044e" : "#e2e8f0" }}
         onClick={handleGallery}
         className="gallery-title"
       >
@@ -33,7 +33,7 @@ const Header = () => {
       <div className="toggle-icon">
         <div onClick={toggleTheme} className="dark-toggle">
           {!isDark ? (
-            <BsFillSunFill style={{ color: !isDark ? "#d946ef" : "white" }} />
+            <BsFillSunFill style={{ color: !isDark ? "#4a044e" : "#e2e8f0" }} />
           ) : (
             <BsFillMoonFill />
           )}

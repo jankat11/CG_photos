@@ -34,7 +34,7 @@ const SearchForm = () => {
 
   return (
     <section>
-      <h1 style={{color: isDark ? "white" : "#d946ef"}} className="title jankat">
+      <h1 style={{color: isDark ? "white" : "#4a044e"}} className="title jankat">
         Jankat <span className="mx-1">Images</span>
       </h1>
       <article>

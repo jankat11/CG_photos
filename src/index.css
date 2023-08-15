@@ -340,8 +340,13 @@ Search Form
 
 .search-input:focus {
   outline: none !important;
-  box-shadow: 0 0 5px 1px #d946ef;
-  border: solid 1px #d846ef00;
+  box-shadow: 0 0 5px 1px #4a044e18;
+  border: solid 1px #4a044e63;
+}
+.dark-theme .search-input:focus {
+  outline: none !important;
+  box-shadow: 0 0 5px 1px #4a044e18;
+  border: solid 1px #e466f0;
 }
 
 .search-input {

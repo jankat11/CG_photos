@@ -316,10 +316,13 @@ Toggle Container
   display: grid;
   place-items: center;
   cursor: pointer;
+  
 }
 .toggle-icon {
   font-size: 1.5rem;
   color: var(--textColor);
+  position: relative;
+  left: 1.4rem;
 }
 /* 
 ========

@@ -40,7 +40,7 @@ const SearchForm = () => {
       <article>
         <form onSubmit={handleSubmit} className="search-form">
           <input
-            placeholder={!isMyGalleryOpen ? "setup" : "your gallery:"}
+            placeholder={!isMyGalleryOpen ? "desk" : "your gallery:"}
             type="text"
             ref={inputRef}
             onChange={handleChange}

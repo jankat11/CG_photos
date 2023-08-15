@@ -33,7 +33,7 @@ const Header = () => {
         fluid
       />
       <h3
-        style={{ color: isDark ? "white" : "#4a044e" }}
+        style={{ color: isDark ? "white" : "#4a044e", cursor: "default" }}
         className="title jankat mt-1 position-relative"
       >
         Jankat <span className="mx-1">Images</span>

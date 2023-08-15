@@ -74,7 +74,7 @@ const Gallery = () => {
     return (
       <div className="spinner-container w-100 d-flex justify-content-center my-5">
         <Spinner
-          style={{ color: "#d946ef" }}
+          style={{ color: isDark ? "#e2e8f0" : "#4a044e" }}
           className="spinner"
           animation="grow"
         />

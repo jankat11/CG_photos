@@ -51,7 +51,7 @@ const Gallery = () => {
   const handleScroll = () => {
     if (
       window.innerHeight + window.scrollY >=
-      document.body.offsetHeight - 400
+      document.body.offsetHeight - 600
     ) {
       if (!isMyGalleryOpen) {
         fetchNextPage();

@@ -66,7 +66,7 @@ html {
   --backgroundColor: var(--grey-50);
   --textColor: #4a044e;
 
-  --darkModeTransition: color 0.3s ease-in-out;
+  --darkModeTransition: color 0.3s ease-in-out, background-color 0.3s
 }
 
 body {
@@ -323,6 +323,7 @@ Toggle Container
   color: var(--textColor);
   position: relative;
   left: 1.4rem;
+  scale: 0.85;
 }
 /* 
 ========
@@ -364,7 +365,7 @@ Search Form
   border: solid 2px #4a044ebd;
   color: var(--textColor);
   border-radius: 0;
-
+  transition: var(--darkModeTransition);
   /* border-right: none; */
 }
 

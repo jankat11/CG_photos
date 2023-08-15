@@ -348,7 +348,7 @@ Search Form
 }
 .dark-theme .search-input:focus {
   outline: none !important;
-  box-shadow: 0 0 5px 1px #e466f060;
+  box-shadow: 0 0 5px 1px #e891f060;
   border: solid 2px #e9bfec;
 }
 

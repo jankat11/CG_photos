@@ -5,7 +5,7 @@ import UnsplashContext from "../appContext";
 import Spinner from "./Spinner";
 import ImageItem from "./ImageItem";
 import { FavoryItem, Img } from "../app.modal";
-
+import EmptyInfo from "./EmptyInfo";
 
 const url: string = import.meta.env.VITE_BASE_URL;
 const config: { headers: { Authorization: string } } = {
@@ -20,7 +20,6 @@ const Gallery = () => {
     isMyGalleryOpen,
     favoryImages,
     galleryPage,
-    isDark,
     nextGalleryPage,
   } = useContext(UnsplashContext);
 
@@ -77,17 +76,12 @@ const Gallery = () => {
       <>
         {favoryImages.length !== 0 ? (
           <section className="image-container">
-            {favoryImages.slice(0, galleryPage).map((item : FavoryItem) => {
-              return <ImageItem key={item.id} isGallery={true} favory={item} />
+            {favoryImages.slice(0, galleryPage).map((item: FavoryItem) => {
+              return <ImageItem key={item.id} isGallery={true} favory={item} />;
             })}
           </section>
         ) : (
-          <h4
-            style={{ color: isDark ? "#e2e8f0" : "#4a044e" }}
-            className="text-center my-5 w-100"
-          >
-            no images yet!
-          </h4>
+          <EmptyInfo result={false} />
         )}
       </>
     );
@@ -100,17 +94,12 @@ const Gallery = () => {
           <section className="image-container">
             {data?.pages.map((pageItem) => {
               return pageItem.results.map((img: Img) => {
-                return <ImageItem key={img.id} isGallery={false} image={img}/>
+                return <ImageItem key={img.id} isGallery={false} image={img} />;
               });
             })}
           </section>
         ) : (
-          <h4
-            style={{ color: isDark ? "#e2e8f0" : "#4a044e" }}
-            className="text-center my-5"
-          >
-            no result!
-          </h4>
+          <EmptyInfo result={true} />
         ))}
       {isFetchingNextPage && <Spinner bottomSpiner={true} />}
     </>

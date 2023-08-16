@@ -20,7 +20,7 @@ const Heart: React.FC<Props> = ({ imgId, largeImg, smallImg }) => {
     if (color === white) {
       addGallery({ id: imgId, urlLarge: largeImg, urlSmall: smallImg });
     } else {
-      removeGallery(imgId);
+      removeGallery(imgId ? imgId : "");
     }
     setColor((prev) => (prev === pink ? white : pink));
   };

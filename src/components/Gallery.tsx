@@ -3,12 +3,9 @@ import axios from "axios";
 import { useContext, useEffect, useCallback } from "react";
 import UnsplashContext from "../appContext";
 import Spinner from "./Spinner";
-import Heart from "./Heart";
+import ImageItem from "./ImageItem";
+import { FavoryItem, Img } from "../app.modal";
 
-interface Img {
-  id: string;
-  urls: { full: string; regular: string };
-}
 
 const url: string = import.meta.env.VITE_BASE_URL;
 const config: { headers: { Authorization: string } } = {
@@ -80,19 +77,8 @@ const Gallery = () => {
       <>
         {favoryImages.length !== 0 ? (
           <section className="image-container">
-            {favoryImages.slice(0, galleryPage).map((item) => {
-              return (
-                <article key={item.id} className="position-relative">
-                  <a href={item.urlLarge} target="_blank">
-                    <img className="img" src={item.urlSmall} alt="none" />
-                  </a>
-                  <Heart
-                    largeImg={item.urlLarge}
-                    smallImg={item.urlSmall}
-                    imgId={item.id}
-                  />
-                </article>
-              );
+            {favoryImages.slice(0, galleryPage).map((item : FavoryItem) => {
+              return <ImageItem key={item.id} isGallery={true} favory={item} />
             })}
           </section>
         ) : (
@@ -114,18 +100,7 @@ const Gallery = () => {
           <section className="image-container">
             {data?.pages.map((pageItem) => {
               return pageItem.results.map((img: Img) => {
-                return (
-                  <article key={img.id} className="position-relative">
-                    <a href={img.urls.full} target="_blank">
-                      <img className="img" src={img.urls.regular} alt="none" />
-                    </a>
-                    <Heart
-                      largeImg={img.urls.full}
-                      smallImg={img.urls.regular}
-                      imgId={img.id}
-                    />
-                  </article>
-                );
+                return <ImageItem key={img.id} isGallery={false} image={img}/>
               });
             })}
           </section>

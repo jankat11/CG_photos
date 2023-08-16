@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect } from "react";
+import { UnsplashContextType, FavoryItem } from "./app.modal";
 
-const favoryImagePerPage = 12
+const favoryImagePerPage = 12;
 const theme = localStorage.getItem("isDark");
 const initialTheme = theme ? (theme === "false" ? false : true) : false;
 if (!theme) localStorage.setItem("isDark", "false");
@@ -10,27 +11,6 @@ if (gallery) {
   initialGallery = JSON.parse(gallery);
 } else {
   initialGallery = [];
-}
-
-interface FavoryItem {
-  id: string;
-  urlSmall: string;
-  urlLarge: string;
-}
-
-interface UnsplashContextType {
-  isDark: boolean;
-  searchValue: string;
-  favoryImages: FavoryItem[];
-  isMyGalleryOpen: boolean;
-  galleryPage: number;
-  nextGalleryPage: () => void;
-  addGallery: (item: FavoryItem) => void;
-  removeGallery: (id: string) => void;
-  openGallery: () => void;
-  closeGallery: () => void;
-  toggleTheme: () => void;
-  handleChangeSearchvalue: (value: string) => void;
 }
 
 const UnsplashContext = createContext<UnsplashContextType>({
@@ -85,11 +65,11 @@ export const UnsplashContextProvider: React.FC<Props> = ({ children }) => {
   };
 
   const nextGalleryPage = () => {
-    console.log("gallery page is: ",galleryPage);
-    
+    console.log("gallery page is: ", galleryPage);
+
     setGalleryPage((prev) => {
-      if (favoryImages.length > prev) return prev + favoryImagePerPage
-      return prev
+      if (favoryImages.length > prev) return prev + favoryImagePerPage;
+      return prev;
     });
   };
 

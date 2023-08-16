@@ -3,9 +3,9 @@ import { useState, useContext, useEffect } from "react";
 import UnsplashContext from "../appContext";
 
 interface Props {
-  imgId: string;
-  largeImg: string;
-  smallImg: string;
+  imgId: string | undefined
+  largeImg: string | undefined;
+  smallImg: string | undefined;
 }
 
 const pink = "#ec4899";

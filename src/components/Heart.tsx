@@ -1,5 +1,5 @@
 import { BsFillHeartFill } from "react-icons/bs";
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, memo } from "react";
 import UnsplashContext from "../appContext";
 
 interface Props {
@@ -41,4 +41,4 @@ const Heart: React.FC<Props> = ({ imgId, largeImg, smallImg }) => {
     </div>
   );
 };
-export default Heart;
+export default memo(Heart);

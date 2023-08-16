@@ -1,5 +1,5 @@
 import { Spinner as BootstrapSpinner } from "react-bootstrap";
-import { useContext } from "react";
+import { useContext, memo } from "react";
 import UnsplashContext from "../appContext";
 
 interface Props {
@@ -22,4 +22,4 @@ const Spinner: React.FC<Props> = ({ bottomSpiner }) => {
     </div>
   );
 };
-export default Spinner;
+export default memo(Spinner);

@@ -81,7 +81,7 @@ const Gallery = () => {
             })}
           </section>
         ) : (
-          <EmptyInfo result={false} />
+          <EmptyInfo />
         )}
       </>
     );

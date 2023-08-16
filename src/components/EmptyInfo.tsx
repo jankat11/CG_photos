@@ -1,8 +1,8 @@
-import { useContext } from "react";
+import { useContext, memo } from "react";
 import UnsplashContext from "../appContext";
 
 interface Props {
-  result: boolean;
+  result?: boolean;
 }
 
 const EmptyInfo: React.FC<Props> = ({ result }) => {
@@ -17,4 +17,4 @@ const EmptyInfo: React.FC<Props> = ({ result }) => {
     </h4>
   );
 };
-export default EmptyInfo;
+export default memo(EmptyInfo);

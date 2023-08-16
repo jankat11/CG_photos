@@ -6,6 +6,7 @@ import Spinner from "./Spinner";
 import ImageItem from "./ImageItem";
 import { FavoryItem, Img } from "../app.modal";
 import EmptyInfo from "./EmptyInfo";
+import { AnimatePresence, motion } from "framer-motion";
 
 const url: string = import.meta.env.VITE_BASE_URL;
 const config: { headers: { Authorization: string } } = {
@@ -76,9 +77,21 @@ const Gallery = () => {
       <>
         {favoryImages.length !== 0 ? (
           <section className="image-container">
-            {favoryImages.slice(0, galleryPage).map((item: FavoryItem) => {
-              return <ImageItem key={item.id} isGallery={true} favory={item} />;
-            })}
+            <AnimatePresence>
+              {favoryImages.slice(0, galleryPage).map((item: FavoryItem) => {
+                return (
+                  <motion.div
+                    key={item.id}
+                    initial={{ opacity: 0.82 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="position-relative"
+                  >
+                    <ImageItem isGallery={true} favory={item} />
+                  </motion.div>
+                );
+              })}
+            </AnimatePresence>
           </section>
         ) : (
           <EmptyInfo />

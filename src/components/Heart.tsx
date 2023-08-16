@@ -12,7 +12,7 @@ const pink = "#ec4899";
 const white = "white";
 
 const Heart: React.FC<Props> = ({ imgId, largeImg, smallImg }) => {
-  const { addGallery, removeGallery, favoryImages } =
+  const { addGallery, removeGallery, favoryImages, isMyGalleryOpen } =
     useContext(UnsplashContext);
   const [color, setColor] = useState<string>(white);
 
@@ -36,6 +36,7 @@ const Heart: React.FC<Props> = ({ imgId, largeImg, smallImg }) => {
     <div
       onClick={handleColorChange}
       className="heart-wrapper position-absolute"
+      style={{bottom: isMyGalleryOpen ? "0rem" : "3rem"}}
     >
       <BsFillHeartFill style={{ color }} className="heart" />
     </div>

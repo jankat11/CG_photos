@@ -22,5 +22,5 @@ export interface UnsplashContextType {
   closeGallery: () => void;
   toggleTheme: () => void;
   handleChangeSearchvalue: (value: string) => void;
-}
+} 
 

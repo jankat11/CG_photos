@@ -54,8 +54,6 @@ const Gallery = () => {
       if (!isMyGalleryOpen) {
         fetchNextPage();
       } else {
-        console.log(favoryImages.length, galleryPage);
-
         if (favoryImages.length > galleryPage) nextGalleryPage();
       }
     }

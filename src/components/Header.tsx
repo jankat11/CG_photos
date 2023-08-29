@@ -36,7 +36,7 @@ const Header = () => {
         style={{ color: isDark ? "white" : "#4a044e", cursor: "default" }}
         className="title jankat mt-1 position-relative"
       >
-        CG <span className="mx-1">Photosss</span>
+        CG <span className="mx-1">Photos</span>
       </h3>
       <article className="d-flex">
         <p

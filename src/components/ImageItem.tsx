@@ -21,7 +21,7 @@ const ImageItem: React.FC<Props> = ({ isGallery, image, favory }) => {
       </LazyLoad>
       </a>
       <Heart largeImg={largeImg} smallImg={smallImg} imgId={imgId} />
-    </article>
+    </article> 
   );
 };
 export default ImageItem;

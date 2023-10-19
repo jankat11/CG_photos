@@ -36,7 +36,7 @@ const Heart: React.FC<Props> = ({ imgId, largeImg, smallImg }) => {
     <div
       onClick={handleColorChange}
       className="heart-wrapper position-absolute"
-      style={{bottom: isMyGalleryOpen ? "0rem" : "3rem"}}
+      style={{bottom: isMyGalleryOpen ? "0rem" : "0rem"}}
     >
       <BsFillHeartFill style={{ color }} className="heart" />
     </div>

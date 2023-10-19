@@ -1,5 +1,6 @@
 import Heart from "./Heart";
 import { FavoryItem, Img } from "../app.modal";
+import LazyLoad from 'react-lazy-load';
 
 interface Props {
   image?: Img;
@@ -15,7 +16,10 @@ const ImageItem: React.FC<Props> = ({ isGallery, image, favory }) => {
   return (
     <article className="position-relative">
       <a href={largeImg} target="_blank">
-        <img className="img" src={smallImg} alt="none" />
+      <LazyLoad height={320} offset={320}>
+        <img className="img" src={smallImg} alt="none" loading="lazy" />
+
+      </LazyLoad>
       </a>
       <Heart largeImg={largeImg} smallImg={smallImg} imgId={imgId} />
     </article>

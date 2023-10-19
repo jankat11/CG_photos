@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { useContext, useEffect, useCallback, useState } from "react";
+import { useContext, useEffect, useCallback} from "react";
 import UnsplashContext from "../appContext";
 import Spinner from "./Spinner";
 import ImageItem from "./ImageItem";

@@ -25,7 +25,7 @@ html {
   --primary-900: #141233 !important;
 
   /* grey */
-  --grey-50: #f1f5f9b9;
+  --grey-50: #f1f5f9;
   --grey-100: #f1f5f9;
   --grey-200: #e2e8f0;
   --grey-300: #cbd5e1;
@@ -63,7 +63,7 @@ html {
   /* dark mode setup */
   --dark-mode-bg-color: #0c010d;
   --dark-mode-text-color: #f0f0f0;
-  --backgroundColor: var(--grey-50);
+  --backgroundColor: var(--grey-100);
   --textColor: #4a044e;
 
   --darkModeTransition: color 0.3s ease-in-out, background-color 0.3s;
@@ -164,6 +164,7 @@ ul {
   width: 100%;
   display: block;
   object-fit: cover;
+  border-radius: 5px;
 }
 /* buttons */
 
@@ -235,8 +236,12 @@ ul {
   width: 100%;
   padding: 0.375rem 0.75rem;
   border-radius: var(--borderRadius);
-  background: var(--backgroundColor);
+  background: white;
   border: 1px solid var(--grey-200);
+}
+
+.dark-theme .form-input {
+  background: var(--backgroundColor);
 }
 
 .form-row {
@@ -365,6 +370,7 @@ Search Form
   color: var(--textColor);
   border-radius: 0;
   transition: var(--darkModeTransition);
+  border-radius: 5px !important;
   /* border-right: none; */
 }
 
@@ -386,6 +392,7 @@ Gallery
   width: var(--view-width);
   max-width: var(--max-width);
   margin: 3rem auto;
+  margin-top: 4rem;
   display: grid;
   gap: 1rem;
 }
@@ -442,13 +449,16 @@ Gallery
 }
 
 .jankat {
-  letter-spacing: -2px !important;
+  letter-spacing: -1px !important;
+  font-weight: 500;
+  font-size: xx-large;
 }
 
 .icon-img {
-  opacity: 11%;
+  opacity: 10%;
   z-index: -1000;
-  top: -5.5rem;
+  top: -8rem;
+  left: -3px;
 }
 
 @media (min-width: 768px) {
@@ -459,5 +469,10 @@ Gallery
 @media (min-width: 992px) {
   .image-container {
     grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+@media (max-width: 380px) {
+  .jankat {
+    font-size: x-large;
   }
 }

@@ -15,7 +15,7 @@ const Spinner: React.FC<Props> = ({ bottomSpiner }) => {
       }`}
     >
       <BootstrapSpinner
-        style={{ color: isDark ? "#e2e8f0" : "#240227" }}
+        style={{ color: isDark ? "#e2e8f0" : "#24022770" }}
         className="spinner"
         animation="grow"
       />

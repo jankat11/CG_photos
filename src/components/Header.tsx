@@ -25,19 +25,19 @@ const Header = () => {
   }, [isDark]);
 
   return (
-    <section className="toggle-container">
+    <section className="toggle-container position-relative">
       <Image
         width={350}
         className="ms-1 position-absolute icon-img"
         src={photo1}
         fluid
       />
-      <h3
-        style={{ color: isDark ? "white" : "#4a044e", cursor: "default" }}
+      <p
+        style={{ color: isDark ? "white" : "#4a044e", cursor: "default"}}
         className="title jankat mt-1 position-relative"
       >
-        CG <span className="mx-1">Photos</span>
-      </h3>
+        CG <span className="mx-1">PHOTOS</span>
+      </p>
       <article className="d-flex">
         <p
           style={{ color: !isDark ? "#4a044e" : "#e2e8f0" }}

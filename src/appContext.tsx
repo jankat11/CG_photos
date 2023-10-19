@@ -15,6 +15,7 @@ if (gallery) {
 
 const UnsplashContext = createContext<UnsplashContextType>({
   isDark: false,
+  touch: false,
   searchValue: "",
   favoryImages: [],
   isMyGalleryOpen: false,
@@ -26,6 +27,8 @@ const UnsplashContext = createContext<UnsplashContextType>({
   closeGallery: () => {},
   toggleTheme: () => {},
   handleChangeSearchvalue: () => {},
+  setTouchTrue: () => {},
+  setTouchFalse: () => {}
 });
 
 interface Props {
@@ -37,6 +40,7 @@ export const UnsplashContextProvider: React.FC<Props> = ({ children }) => {
   const [searchValue, setSearchValue] = useState<string>("");
   const [isMyGalleryOpen, setIsMyGalleryOpen] = useState<boolean>(false);
   const [galleryPage, setGalleryPage] = useState<number>(favoryImagePerPage);
+  const [touch, setTouch] = useState<boolean>(false);
   const [favoryImages, setFavoryImages] =
     useState<FavoryItem[]>(initialGallery);
   const handleChangeSearchvalue = (value: string) => {
@@ -46,6 +50,13 @@ export const UnsplashContextProvider: React.FC<Props> = ({ children }) => {
   const addGallery = (imgItem: FavoryItem) => {
     setFavoryImages((prev) => [imgItem, ...prev]);
   };
+
+  const setTouchTrue = () => {
+    setTouch(true)
+  }
+  const setTouchFalse = () => {
+    setTouch(false)
+  }
 
   const removeGallery = (imgId: string) => {
     setFavoryImages((prev) => {
@@ -83,6 +94,7 @@ export const UnsplashContextProvider: React.FC<Props> = ({ children }) => {
     searchValue,
     favoryImages,
     isMyGalleryOpen,
+    touch,
     galleryPage,
     nextGalleryPage,
     addGallery,
@@ -91,6 +103,8 @@ export const UnsplashContextProvider: React.FC<Props> = ({ children }) => {
     closeGallery,
     toggleTheme,
     handleChangeSearchvalue,
+    setTouchTrue,
+    setTouchFalse
   };
 
   useEffect(() => {

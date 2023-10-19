@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { useContext, useEffect, useCallback } from "react";
+import { useContext, useEffect, useCallback, useState } from "react";
 import UnsplashContext from "../appContext";
 import Spinner from "./Spinner";
 import ImageItem from "./ImageItem";
@@ -16,15 +16,18 @@ const Gallery = () => {
     isMyGalleryOpen,
     favoryImages,
     galleryPage,
+    touch,
+    setTouchTrue,
+    setTouchFalse,
     nextGalleryPage,
   } = useContext(UnsplashContext);
-
   const fetchImages = useCallback(
     async (pageParam: number) => {
       const urlParameters = `?per_page=18&page=${pageParam}&query=${
         searchValue ? searchValue : "beautiful"
       }`;
       const { data } = await axios.get(url + urlParameters);
+      setTouchFalse()
       return data;
     },
     [searchValue]
@@ -41,13 +44,21 @@ const Gallery = () => {
       },
     });
 
+  const handleFetch = () => {
+    fetchNextPage()
+  }
+
   const handleScroll = () => {
     if (
-      window.innerHeight + window.scrollY >=
-      document.body.offsetHeight - 600
+      !touch &&
+      window.innerHeight + window.scrollY >= document.body.offsetHeight - 600
     ) {
       if (!isMyGalleryOpen) {
-        fetchNextPage();
+        setTouchTrue();
+        handleFetch()
+    
+
+        return;
       } else {
         if (favoryImages.length > galleryPage) nextGalleryPage();
       }
@@ -59,7 +70,7 @@ const Gallery = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [isMyGalleryOpen, galleryPage]);
+  }, [isMyGalleryOpen, galleryPage, touch]);
 
   if (isLoading) {
     return <Spinner />;

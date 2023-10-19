@@ -72,7 +72,7 @@ export const UnsplashContextProvider: React.FC<Props> = ({ children }) => {
           return {
             total: data.total,
             total_pages: data.total_pages,
-            results: [...data.results.slice(1)],
+            results: [...data.results.slice(1), data.results[0]],
           }
         }
       }

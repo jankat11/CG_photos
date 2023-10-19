@@ -27,7 +27,7 @@ const Gallery = () => {
         searchValue ? searchValue : "beautiful"
       }`;
       const { data } = await axios.get(url + urlParameters);
-      setTouchFalse()
+      setTouchFalse();
       return data;
     },
     [searchValue]
@@ -45,8 +45,8 @@ const Gallery = () => {
     });
 
   const handleFetch = () => {
-    fetchNextPage()
-  }
+    fetchNextPage();
+  };
 
   const handleScroll = () => {
     if (
@@ -55,8 +55,7 @@ const Gallery = () => {
     ) {
       if (!isMyGalleryOpen) {
         setTouchTrue();
-        handleFetch()
-    
+        handleFetch();
 
         return;
       } else {

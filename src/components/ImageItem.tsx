@@ -18,7 +18,6 @@ const ImageItem: React.FC<Props> = ({ isGallery, image, favory }) => {
       <a href={largeImg} target="_blank">
       <LazyLoad height={320} offset={320}>
         <img className="img" src={smallImg} alt="none" loading="lazy" />
-
       </LazyLoad>
       </a>
       <Heart largeImg={largeImg} smallImg={smallImg} imgId={imgId} />

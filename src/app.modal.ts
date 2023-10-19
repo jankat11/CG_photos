@@ -9,6 +9,12 @@ export interface Img {
   urls: { full: string; regular: string };
 }
 
+export interface ApiResponse {
+  total: number;
+  total_pages: number;
+  results: Record<string, any>[];
+}
+
 export interface UnsplashContextType {
   isDark: boolean;
   searchValue: string;
@@ -23,6 +29,6 @@ export interface UnsplashContextType {
   closeGallery: () => void;
   toggleTheme: () => void;
   handleChangeSearchvalue: (value: string) => void;
-  setImagesData: () => void
+  setImagesData: (data: ApiResponse) => void
 }  
 

@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from "react";
-import { UnsplashContextType, FavoryItem } from "./app.modal";
+import { UnsplashContextType, FavoryItem, ApiResponse } from "./app.modal";
 
 const favoryImagePerPage = 12;
 const theme = localStorage.getItem("isDark");
@@ -41,7 +41,7 @@ export const UnsplashContextProvider: React.FC<Props> = ({ children }) => {
   const [searchValue, setSearchValue] = useState<string>("");
   const [isMyGalleryOpen, setIsMyGalleryOpen] = useState<boolean>(false);
   const [galleryPage, setGalleryPage] = useState<number>(favoryImagePerPage);
-  const [imagesData, setImages] = useState<any>(null);
+  const [imagesData, setImages] = useState<ApiResponse | null>(null);
   const [favoryImages, setFavoryImages] =
     useState<FavoryItem[]>(initialGallery);
 
@@ -56,7 +56,7 @@ export const UnsplashContextProvider: React.FC<Props> = ({ children }) => {
     }, 600);
   };
 
-  const setImagesData = (data) => {
+  const setImagesData = (data: ApiResponse) => {
     setImages((prev) => {
       if (prev) {
         return {

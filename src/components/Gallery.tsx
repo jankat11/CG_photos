@@ -31,7 +31,6 @@ const Gallery = () => {
       searchValue ? searchValue : "beautiful"
     }`;
     const { data } = await axios.get(url + urlParameters);
-
     touchRef.current = false;
     setImagesData(data);
     setIsFetchingNextPage(false);

@@ -27,7 +27,7 @@ const Gallery = () => {
 
   const fetchImages = async (pageParam: number) => {
     setIsFetchingNextPage(true);
-    const urlParameters = `?per_page=18&page=${pageParam}&query=${
+    const urlParameters = `?per_page=36&page=${pageParam}&query=${
       searchValue ? searchValue : "beautiful"
     }`;
     const { data } = await axios.get(url + urlParameters);

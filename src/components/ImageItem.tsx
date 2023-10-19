@@ -16,7 +16,7 @@ const ImageItem: React.FC<Props> = ({ isGallery, image, favory }) => {
   return (
     <article className="position-relative">
       <a href={largeImg} target="_blank">
-      <LazyLoad height={320} offset={320}>
+      <LazyLoad height={320} offset={620}>
         <img className="img" src={smallImg} alt="none" loading="lazy" />
       </LazyLoad>
       </a>

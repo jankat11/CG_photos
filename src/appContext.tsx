@@ -15,7 +15,6 @@ if (gallery) {
 
 const UnsplashContext = createContext<UnsplashContextType>({
   isDark: false,
-  touch: false,
   searchValue: "",
   favoryImages: [],
   isMyGalleryOpen: false,
@@ -28,8 +27,6 @@ const UnsplashContext = createContext<UnsplashContextType>({
   closeGallery: () => {},
   toggleTheme: () => {},
   handleChangeSearchvalue: () => {},
-  setTouchTrue: () => {},
-  setTouchFalse: () => {},
   setImagesData: () => {}
 });
 
@@ -44,7 +41,6 @@ export const UnsplashContextProvider: React.FC<Props> = ({ children }) => {
   const [searchValue, setSearchValue] = useState<string>("");
   const [isMyGalleryOpen, setIsMyGalleryOpen] = useState<boolean>(false);
   const [galleryPage, setGalleryPage] = useState<number>(favoryImagePerPage);
-  const [touch, setTouch] = useState<boolean>(false);
   const [imagesData, setImages] = useState<any>(null);
   const [favoryImages, setFavoryImages] =
     useState<FavoryItem[]>(initialGallery);
@@ -71,7 +67,6 @@ export const UnsplashContextProvider: React.FC<Props> = ({ children }) => {
       } else {
         console.log("from set: ", data);
         return data;
-        
       }
     });
   }
@@ -80,12 +75,6 @@ export const UnsplashContextProvider: React.FC<Props> = ({ children }) => {
     setFavoryImages((prev) => [imgItem, ...prev]);
   };
 
-  const setTouchTrue = () => {
-    setTouch(true)
-  }
-  const setTouchFalse = () => {
-    setTouch(false)
-  }
 
   const removeGallery = (imgId: string) => {
     setFavoryImages((prev) => {
@@ -123,7 +112,6 @@ export const UnsplashContextProvider: React.FC<Props> = ({ children }) => {
     searchValue,
     favoryImages,
     isMyGalleryOpen,
-    touch,
     galleryPage,
     imagesData,
     nextGalleryPage,
@@ -133,8 +121,6 @@ export const UnsplashContextProvider: React.FC<Props> = ({ children }) => {
     closeGallery,
     toggleTheme,
     handleChangeSearchvalue,
-    setTouchTrue,
-    setTouchFalse,
     setImagesData
   };
 

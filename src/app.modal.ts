@@ -11,7 +11,6 @@ export interface Img {
 
 export interface UnsplashContextType {
   isDark: boolean;
-  touch: boolean;
   searchValue: string;
   favoryImages: FavoryItem[];
   isMyGalleryOpen: boolean;
@@ -24,8 +23,6 @@ export interface UnsplashContextType {
   closeGallery: () => void;
   toggleTheme: () => void;
   handleChangeSearchvalue: (value: string) => void;
-  setTouchTrue: () => void
-  setTouchFalse: () => void
   setImagesData: () => void
 }  
 

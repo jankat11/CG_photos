@@ -65,8 +65,16 @@ export const UnsplashContextProvider: React.FC<Props> = ({ children }) => {
           results: [...prev.results, ...data.results],
         };
       } else {
-        console.log("from set: ", data);
-        return data;
+        if (searchValue) {
+          console.log("from set: ", data);
+          return data;
+        } else {
+          return {
+            total: data.total,
+            total_pages: data.total_pages,
+            results: [...data.results.slice(1)],
+          }
+        }
       }
     });
   }

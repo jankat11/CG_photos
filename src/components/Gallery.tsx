@@ -9,11 +9,6 @@ import EmptyInfo from "./EmptyInfo";
 import { AnimatePresence, motion } from "framer-motion";
 
 const url: string = import.meta.env.VITE_BASE_URL;
-const config: { headers: { Authorization: string } } = {
-  headers: {
-    Authorization: import.meta.env.VITE_ACCESS_TOKEN,
-  },
-};
 
 const Gallery = () => {
   const {
@@ -29,7 +24,7 @@ const Gallery = () => {
       const urlParameters = `per_page=18&page=${pageParam}&query=${
         searchValue ? searchValue : "beautiful"
       }`;
-      const { data } = await axios.get(url + urlParameters, config);
+      const { data } = await axios.get(url + urlParameters);
       return data;
     },
     [searchValue]

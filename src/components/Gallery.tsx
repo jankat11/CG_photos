@@ -45,12 +45,10 @@ const Gallery = () => {
 
   const handleScroll = () => {
     if (
-   
       !touchRef.current &&
       window.innerHeight + window.scrollY >= document.body.offsetHeight - 600
     ) {
       if (!isMyGalleryOpen) {
-       
         touchRef.current = true;
         const totalPage = parseInt(imagesData?.total_pages);
         console.log(totalPage, imagesData);
@@ -72,20 +70,18 @@ const Gallery = () => {
     fetchImages(1).then(() => {
       setIsLoading(false);
       pageRef.current = 2;
-    })
-  }
+    });
+  };
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [isMyGalleryOpen, galleryPage, searchValue]);
-
-
+  }, [isMyGalleryOpen, galleryPage, searchValue, imagesData]);
 
   useEffect(() => {
-    initialLoad()
+    initialLoad();
   }, [searchValue]);
 
   if (isLoading) {

@@ -16,6 +16,7 @@ export interface UnsplashContextType {
   favoryImages: FavoryItem[];
   isMyGalleryOpen: boolean;
   galleryPage: number;
+  imagesData: any
   nextGalleryPage: () => void;
   addGallery: (item: FavoryItem) => void;
   removeGallery: (id: string) => void;
@@ -25,5 +26,6 @@ export interface UnsplashContextType {
   handleChangeSearchvalue: (value: string) => void;
   setTouchTrue: () => void
   setTouchFalse: () => void
+  setImagesData: () => void
 }  
 

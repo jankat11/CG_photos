@@ -6,18 +6,13 @@ let timeOut: number;
 const SearchForm = () => {
   const {
     handleChangeSearchvalue,
-    closeGallery,
     isMyGalleryOpen,
     searchValue,
   } = useContext(UnsplashContext);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleChange = () => {
-    clearTimeout(timeOut);
-    timeOut = setTimeout(() => {
-      handleChangeSearchvalue(inputRef.current!.value);
-      closeGallery();
-    }, 600);
+    handleChangeSearchvalue(inputRef.current!.value);
   };
 
   const handleSubmit = (e: React.FormEvent) => {

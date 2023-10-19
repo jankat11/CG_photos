@@ -20,6 +20,7 @@ const UnsplashContext = createContext<UnsplashContextType>({
   favoryImages: [],
   isMyGalleryOpen: false,
   galleryPage: 0,
+  imagesData: null,
   nextGalleryPage: () => {},
   addGallery: () => {},
   removeGallery: () => {},
@@ -28,12 +29,15 @@ const UnsplashContext = createContext<UnsplashContextType>({
   toggleTheme: () => {},
   handleChangeSearchvalue: () => {},
   setTouchTrue: () => {},
-  setTouchFalse: () => {}
+  setTouchFalse: () => {},
+  setImagesData: () => {}
 });
 
 interface Props {
   children: React.ReactNode;
 }
+
+let timeOut: number;
 
 export const UnsplashContextProvider: React.FC<Props> = ({ children }) => {
   const [isDark, setIsDark] = useState<boolean>(initialTheme);
@@ -41,11 +45,36 @@ export const UnsplashContextProvider: React.FC<Props> = ({ children }) => {
   const [isMyGalleryOpen, setIsMyGalleryOpen] = useState<boolean>(false);
   const [galleryPage, setGalleryPage] = useState<number>(favoryImagePerPage);
   const [touch, setTouch] = useState<boolean>(false);
+  const [imagesData, setImages] = useState<any>(null);
   const [favoryImages, setFavoryImages] =
     useState<FavoryItem[]>(initialGallery);
+
+
   const handleChangeSearchvalue = (value: string) => {
-    setSearchValue(value);
+    
+    clearTimeout(timeOut);
+    timeOut = setTimeout(() => {
+      setImages(null)
+      setSearchValue(value);
+      closeGallery();
+    }, 600);
   };
+
+  const setImagesData = (data) => {
+    setImages((prev) => {
+      if (prev) {
+        return {
+          total: data.total,
+          total_pages: data.total_pages,
+          results: [...prev.results, ...data.results],
+        };
+      } else {
+        console.log("from set: ", data);
+        return data;
+        
+      }
+    });
+  }
 
   const addGallery = (imgItem: FavoryItem) => {
     setFavoryImages((prev) => [imgItem, ...prev]);
@@ -96,6 +125,7 @@ export const UnsplashContextProvider: React.FC<Props> = ({ children }) => {
     isMyGalleryOpen,
     touch,
     galleryPage,
+    imagesData,
     nextGalleryPage,
     addGallery,
     removeGallery,
@@ -104,7 +134,8 @@ export const UnsplashContextProvider: React.FC<Props> = ({ children }) => {
     toggleTheme,
     handleChangeSearchvalue,
     setTouchTrue,
-    setTouchFalse
+    setTouchFalse,
+    setImagesData
   };
 
   useEffect(() => {

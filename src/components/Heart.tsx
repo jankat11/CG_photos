@@ -12,7 +12,7 @@ const pink = "#ec4899";
 const white = "white";
 
 const Heart: React.FC<Props> = ({ imgId, largeImg, smallImg }) => {
-  const { addGallery, removeGallery, favoryImages, isMyGalleryOpen } =
+  const { addGallery, removeGallery, favoryImages} =
     useContext(UnsplashContext);
   const [color, setColor] = useState<string>(white);
 

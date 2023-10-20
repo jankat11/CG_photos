@@ -1,5 +1,5 @@
 /* ============= GLOBAL CSS =============== */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Tilt+Neon:wght@400;600;700&display=swap");
 *,
 ::after,
 ::before {
@@ -10,6 +10,9 @@
 
 html {
   font-size: 100%;
+  position: relative;
+  z-index: -1000;
+ 
 } /*16px*/
 
 :root {
@@ -70,19 +73,21 @@ html {
 }
 
 body {
-  font-family: Poppins, sans-serif;
-
+  font-family: Tilt+Neon, sans-serif;
   font-weight: 400;
   line-height: 1;
   transition: var(--darkModeTransition);
   background: var(--backgroundColor);
   color: var(--textColor);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3E%3Cg fill='%23e2e0ff' fill-opacity='0.5'%3E%3Cpath fill-rule='evenodd' d='M0 0h4v4H0V0zm4 4h4v4H4V4z'/%3E%3C/g%3E%3C/svg%3E");
 }
 
 .dark-theme {
   --textColor: var(--dark-mode-text-color);
   --backgroundColor: var(--dark-mode-bg-color);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3E%3Cg fill='%23e2e0ff' fill-opacity='0.09'%3E%3Cpath fill-rule='evenodd' d='M0 0h4v4H0V0zm4 4h4v4H4V4z'/%3E%3C/g%3E%3C/svg%3E");
 }
+
 
 p {
   margin: 0;
@@ -401,10 +406,11 @@ Gallery
   height: 20rem;
   margin-bottom: 3rem;
   transition: all 0.1s ease-in-out;
+  box-shadow: 0 5px 17px 5px rgba(0, 0, 0, 0.26);
 }
 .image-container .img:hover {
   transform: scale(1.01);
-  box-shadow: 0 5px 17px 5px rgba(0, 0, 0, 0.158);
+  box-shadow: 0 5px 17px 5px rgba(0, 0, 0, 0.37);
 }
 
 .spinner-container {
@@ -451,14 +457,20 @@ Gallery
 .jankat {
   letter-spacing: -1px !important;
   font-weight: 500;
-  font-size: xx-large;
+  font-size: 33.5px;
+  position: relative;
+  bottom: 5px;
+  -webkit-user-select: none; 
+  -ms-user-select: none; 
+  user-select: none; 
+  cursor: pointer !important;
 }
 
 .icon-img {
-  opacity: 10%;
+  opacity: 25%;
   z-index: -1000;
-  top: -8rem;
-  left: -3px;
+  top: -6.5rem;
+  left: -5px;
 }
 
 @media (min-width: 768px) {
@@ -474,5 +486,6 @@ Gallery
 @media (max-width: 380px) {
   .jankat {
     font-size: x-large;
+    bottom: 0;
   }
 }

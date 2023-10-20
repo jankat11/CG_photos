@@ -35,6 +35,7 @@ const Header = () => {
       <p
         style={{ color: isDark ? "white" : "#4a044e", cursor: "default"}}
         className="title jankat mt-1 position-relative"
+        onClick={() => window.location.href = "/"}
       >
         CG <span className="mx-1">PHOTOS</span>
       </p>

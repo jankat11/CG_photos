@@ -29,6 +29,6 @@ export interface UnsplashContextType {
   closeGallery: () => void;
   toggleTheme: () => void;
   handleChangeSearchvalue: (value: string) => void;
-  setImagesData: (data: ApiResponse) => void
+  setImagesData: (data: ApiResponse) => void;
 }  
 

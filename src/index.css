@@ -463,10 +463,11 @@ Gallery
   -ms-user-select: none; 
   user-select: none; 
   cursor: pointer !important;
+  text-shadow: 1px 1px #d946ef;
 }
 
 .icon-img {
-  opacity: 25%;
+  opacity: 40%;
   z-index: -1000;
   top: -6.5rem;
   left: -5px;

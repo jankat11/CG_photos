@@ -463,7 +463,7 @@ Gallery
   -ms-user-select: none; 
   user-select: none; 
   cursor: pointer !important;
-  text-shadow: 1px 1px #d946ef;
+  text-shadow: 1px 1px #d846ef75;
 }
 
 .icon-img {

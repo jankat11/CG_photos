@@ -33,12 +33,13 @@ const Header = () => {
         fluid
       />
       <p
-        style={{ color: isDark ? "white" : "#4a044e", cursor: "default"}}
+        style={{ color: isDark ? "white" : "#4a044e", cursor: "default" }}
         className="title jankat mt-1 position-relative"
-        onClick={() => window.location.href = "/"}
+        onClick={() => (window.location.href = "/")}
       >
         CG <span className="mx-1">PHOTOS</span>
       </p>
+
       <article className="d-flex">
         <p
           style={{ color: !isDark ? "#4a044e" : "#e2e8f0" }}

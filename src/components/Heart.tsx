@@ -9,7 +9,7 @@ interface Props {
 }
 
 const pink = "#ec4899";
-const white = "#cbd5e1";
+const white = "#fff";
 
 const Heart: React.FC<Props> = ({ imgId, largeImg, smallImg }) => {
   const { addGallery, removeGallery, favoryImages} =

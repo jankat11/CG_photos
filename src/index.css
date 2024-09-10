@@ -429,9 +429,10 @@ Gallery
 .heart-wrapper {
   bottom: 0rem;
   right: 0;
-  background-color: #0f01104b;
+  background-color: #33415540;
   padding: 0.5rem;
   cursor: pointer;
+  border-radius: 5px 0px 0px 0px;
 }
 
 .heart {

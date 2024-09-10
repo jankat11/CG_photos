@@ -26,7 +26,7 @@ const UpArrow = () => {
   }, []);
 
   return (
-    <div onClick={goToUp} className={`up-scroll ${appear ? "show" : ""}`}>
+    <div onClick={goToUp} className={`shadow up-scroll ${appear ? "show" : ""}`}>
       <RiArrowUpSLine size={25} />
     </div>
   );

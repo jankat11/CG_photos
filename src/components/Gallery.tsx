@@ -6,6 +6,7 @@ import ImageItem from "./ImageItem";
 import { FavoryItem, Img } from "../app.modal";
 import EmptyInfo from "./EmptyInfo";
 import { AnimatePresence, motion } from "framer-motion";
+import UpArrow from "./UpArrow";
 
 const url: string = import.meta.env.VITE_BASE_URL;
 
@@ -27,7 +28,7 @@ const Gallery = () => {
 
   const fetchImages = async (pageParam: number) => {
     setIsFetchingNextPage(true);
-    const urlParameters = `?per_page=36&page=${pageParam}&query=${
+    const urlParameters = `?per_page=24&page=${pageParam}&query=${
       searchValue ? searchValue : "beautiful"
     }`;
     const { data } = await axios.get(url + urlParameters);
@@ -108,6 +109,7 @@ const Gallery = () => {
                 );
               })}
             </AnimatePresence>
+            <UpArrow />
           </section>
         ) : (
           <EmptyInfo />
@@ -129,6 +131,7 @@ const Gallery = () => {
         ) : (
           <EmptyInfo result={true} />
         ))}
+        <UpArrow />
       {isFetchingNextPage && <Spinner bottomSpiner={true} />}
     </>
   );

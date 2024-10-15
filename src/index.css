@@ -429,15 +429,15 @@ Gallery
 .heart-wrapper {
   bottom: 0rem;
   right: 0;
-  background-color: #33415540;
+  background-color: #33415530;
   padding: 0.5rem;
   cursor: pointer;
-  border-radius: 5px 0px 0px 0px;
+  border-radius: 5px 5px 5px 5px;
 }
 
 .heart {
-  width: 2rem;
-  height: 2rem;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 .gallery-title {
@@ -474,7 +474,7 @@ Gallery
 }
 .up-scroll {
   position: fixed;
-  left: 20px;
+  right: 20px;
   bottom: 40px;
 
   color: #94a3b8;
@@ -494,6 +494,19 @@ Gallery
   opacity: 1;  
   visibility: visible; 
   scale: 1;
+}
+
+
+@media (min-width: 1024px) {
+  .up-scroll {
+    padding: .8rem !important;
+  }
+}
+@media (min-width: 1410px) {
+  .up-scroll {
+    padding: .8rem !important;
+    right: 40px;
+  }
 }
 
 @keyframes appear {
